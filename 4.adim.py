@@ -7,7 +7,7 @@ tokenizer=GPT2Tokenizer.from_pretrained(model_name)
 model=GPT2LMHeadModel.from_pretrained(model_name)
 
 # Modeli fine tunning etmek yani eğitmek için aşağıda bazı örnek soru ve cevaplar veriyoruz.
-tokenizer=GPT2Tokenizer.from_pretrained("cenkersisman/gpt2-turkish-900m")
+tokenizer=GPT2Tokenizer.from_pretrained("gpt2")
 if tokenizer.pad_token is None:
   tokenizer.pad_token=tokenizer.eos_token
 
@@ -70,7 +70,7 @@ training_args = TrainingArguments(
 )
 
 # Model ve trainer oluşturun
-model = GPT2LMHeadModel.from_pretrained("cenkersisman/gpt2-turkish-900m")
+model = GPT2LMHeadModel.from_pretrained("gpt2")
 trainer = CustomTrainer(
     model=model,
     args=training_args,
