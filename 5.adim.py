@@ -60,7 +60,7 @@ D, I = index_reduced.search(question_vector_reduced, k=5)
 retrieved_logs = cleaned_data.iloc[I[0]]
 
 # Türkçe GPT-2 modeli kullanma
-gpt2_model_name = "cenkersisman/gpt2-turkish-900m"
+gpt2_model_name = "trained_model"
 tokenizer = GPT2Tokenizer.from_pretrained(gpt2_model_name)
 gpt2_model = GPT2LMHeadModel.from_pretrained(gpt2_model_name)
 
