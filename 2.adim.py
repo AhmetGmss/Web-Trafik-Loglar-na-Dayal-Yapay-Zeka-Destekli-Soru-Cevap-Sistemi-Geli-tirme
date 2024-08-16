@@ -30,5 +30,5 @@ df['Timestamp'] = pd.to_datetime(df['Timestamp'], format='%d/%b/%Y:%H:%M:%S %z')
 
  
 # Hazırladığımız veriyi CSV dosyasına kaydediyoruz.
-csv_file_path = 'cleandata.csv'
+csv_file_path = 'project_clean.csv'
 df.to_csv(csv_file_path, index=False) # ındex'e false dedik ki sol tarafta satır numaraları çıkmasın. 
