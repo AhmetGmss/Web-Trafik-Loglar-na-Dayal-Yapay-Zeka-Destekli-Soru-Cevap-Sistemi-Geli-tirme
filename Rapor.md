@@ -50,7 +50,7 @@ Son adımda, projenin kalan adımlarını fonksiyonlar haline getirip `main` fon
 
 # Sistemin Performansı Ve Doğruluğu Hakkında Değerlendirme
 - Sistemin performans açısından herhangi bir problemi olduğunu düşünmüyorum. Girilen log verilerini doğru bir biçimde
-- alıp vektörize edip daha sonra modeli entegre edip düzgün bir biçimde soru alıp cevap oluşturabiliyor problemsiz şekilde.
+- alıp vektörize edip daha sonra modeli entegre edip düzgün bir biçimde soru alıp cevap oluşturabiliyor ortalama 8-10 10-11 saniye aralığında problemsiz şekilde.
 - Sistemin doğruluğu kısmına gelirsem ise sistemin doğruluğu kısmı biraz problemli, çok doğru ve kesin cevaplar veremiyor
 - bunu da modelin eğitilme kısmında çok fazla veri kullanılmaması ve uzun saatler gerektiren train kısmının
 - eksik kalmasına bağlıyorum, teslimden sonra proje üzerine fine tunning kısmı tam olarak tamamlanıp model tam olarak eğitilerek
