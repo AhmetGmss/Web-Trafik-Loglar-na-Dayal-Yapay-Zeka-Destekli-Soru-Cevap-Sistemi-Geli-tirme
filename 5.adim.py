@@ -1,4 +1,4 @@
-#Gerekli kütüphaneleri indirme kısmı
+#Gerekli kütüphaneleri indiriyoruz ve import ediyoruz
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
@@ -34,7 +34,7 @@ vector_dim = vectorized_data.shape[1]  # Vektörlerin boyutu
 index = faiss.IndexFlatL2(vector_dim)
 index.add(vectorized_data)
 
-# URL'leri vektörleştirme ve PCA ile boyut indirgeme
+# URL'leri vektörleştirme ve PCA ile boyut indirgeme kısmını yapıyoruz
 sentence_model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
 data_vectors = sentence_model.encode(cleaned_data['URL'].tolist())
 data_vectors = np.array(data_vectors, dtype=np.float32)
@@ -43,28 +43,28 @@ pca = PCA(n_components=8)
 reduced_data_vectors = pca.fit_transform(data_vectors)
 reduced_data_vectors = np.ascontiguousarray(reduced_data_vectors, dtype=np.float32)
 
-# FAISS indeksini oluşturma
+# FAISS indeksini oluştururuyoruz
 index_reduced = faiss.IndexFlatL2(8)
 index_reduced.add(reduced_data_vectors)
 
-# Soru vektörünü indirgeme ve arama
+# Soru vektörünü pca ile indirgeyerek aramaya hazır hale getiriyoruz
 question = "Son 24 saatte en çok tıklanan haber hangisidir?"
 question_vector = sentence_model.encode([question])
 question_vector_reduced = pca.transform(np.array(question_vector, dtype=np.float32))
 question_vector_reduced = np.ascontiguousarray(question_vector_reduced, dtype=np.float32)
 
-# Benzer vektörleri bulma
+# Benzer vektörleri -D- arama ve k=5 ile en yakın 5 komşuyu arama kısmı
 D, I = index_reduced.search(question_vector_reduced, k=5)
 
-# En alakalı log kayıtlarını seçme
+# En alakalı log kayıtlarını seçiyoruz
 retrieved_logs = cleaned_data.iloc[I[0]]
 
-# Türkçe GPT-2 modeli kullanma
+#  trained haldeki gpt2 modelini kullanıyoruz
 gpt2_model_name = "trained_model"
 tokenizer = GPT2Tokenizer.from_pretrained(gpt2_model_name)
 gpt2_model = GPT2LMHeadModel.from_pretrained(gpt2_model_name)
 
-# Pad token ayarı
+# Pad token ayarını sağlıyoruz ki eğer pad_token mevcut değilse onu eos yani end of sqeuence ile ayarlamasını istedik.
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 
@@ -72,7 +72,8 @@ if tokenizer.pad_token is None:
 context = " ".join([f"URL: {row['URL']}, Timestamp: {row['Timestamp']}, IP Address: {row['IP Address']}" for _, row in retrieved_logs.iterrows()])
 input_text = f"{question}\nYanıt: {context}"
 
-# Tokenize etme
+# input text üzerinde tokenizasyon işlemi gerçekleştirerek sonuçları pytorch tensorune döndürüyoruz.
+# Aynı zamanda modelin uzunluğu ve formatını düzeltmek için aşağıdaki işlemleri gerçekleştiriyoruz.
 inputs = tokenizer(input_text, return_tensors='pt', padding=True, truncation=True, max_length=512)
 input_ids = inputs['input_ids']
 attention_mask = inputs['attention_mask']
