@@ -73,12 +73,12 @@ def generate_response(question, cleaned_data, index, pca, tokenizer, gpt2_model)
         early_stopping=True,
         repetition_penalty=1.2,  # Tekrarları önlemek için
         length_penalty=1.0,      # Yanıt uzunluğunu dengelemek için
-        num_return_sequences=1  # Yalnızca bir yanıt döndür
+        num_return_sequences=1  # Yalnızca bir yanıt döndürmesi için
     )
 
     # Yanıtı al ve temizle
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    # Fazladan karakterleri temizleme (örnek olarak)
+    # Fazladan karakterleri temizlemesi için 
     cleaned_response = " ".join(response.split()[:550])  # Yanıt uzunluğunu kısıtlama
 
     return cleaned_response
@@ -96,16 +96,16 @@ def main():
     # Adım 2: Vektörleme ve FAISS  ile indeksleme
     index, pca = create_faiss_index(cleaned_data)
 
-    # Türkçe trained gpt2 modeli
+    # trained gpt2 modeli
     gpt2_model_name = "trained_model"
     tokenizer = GPT2Tokenizer.from_pretrained(gpt2_model_name)
     gpt2_model = GPT2LMHeadModel.from_pretrained(gpt2_model_name)
 
     # Pad token ayarı
     if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token  # Pad token olarak EOS token kullan
+        tokenizer.pad_token = tokenizer.eos_token  # Pad token olarak EOS token kullandık
 
-    # Kullanıcıdan soru alma
+    # Kullanıcıdan soru alıyoruz
     question = input("Lütfen sorunuzu giriniz: ")
 
     # Adım 3: Yanıt oluşturma
