@@ -3,11 +3,11 @@
 Projeye bakıldığında, sistemin veri temizleme, vektöre dönüştürme, vektör veritabanına (FAISS) aktarma, kullanıcıdan gelen soruları alıp vektörleştirme, ve kullanıcıdan alınan soruların ve dönen cevapların vektörden doğal dile dönüştürülmesi adımlarının başarıyla çalıştığını görebiliyoruz. Modelin entegresi (GPT-2) ve soru-cevap sisteminin genel performansı olumlu. Ancak, sistemin bazı negatif yönleri de mevcut:
 
 - Modelin eğitimi, verilen cevapların her zaman doğru ve nokta atışı olmamasına neden olabiliyor.
-- Proje teslim tarihini geçmemesi için model şu anda bu haliyle sunulmuştur. Modeli bolca örnek soru-cevap ile eğiterek daha doğru tahminler ve nokta atışı cevaplar almayı sağlayabilir.
+- Proje teslim tarihini geçmemesi için modeli şu anda bu halde sunuyorum. Modeli bolca örnek soru-cevap ile eğiterek daha doğru tahminler ve nokta atışı cevaplar almayı sağlayabiliriz.
 
 # Sistemin Cevaplarının Kalitesini Artırmak İçin İyileştirmeler
 
-Sistemin cevaplarının kalitesini artırmak için aşağıdaki iyileştirmeleri düşünebilirsiniz:
+Sistemin cevaplarının kalitesini ve doğruluğunu arttırmak için aşağıdaki önerileri ekleyebiliriz:
 
 1. **Model Seçimi:**
    - GPT-2 yerine Türkçe dil destekli ve özel olarak eğitilmiş bir model kullanılabilir. Modelin Türkçe metinlerle daha iyi performans göstermesini sağlar.
