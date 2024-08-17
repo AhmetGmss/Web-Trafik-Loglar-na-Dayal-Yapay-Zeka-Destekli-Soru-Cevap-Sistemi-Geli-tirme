@@ -39,3 +39,19 @@ WordPress sitesinin hosting adresinden log dosyalarını çektim.
 
 ## 6. Adım - Sistemin Entegre Edilmesi
 Son adımda, projenin kalan adımlarını fonksiyonlar haline getirip `main` fonksiyonu altında toplayarak sistemi entegre ettik.
+
+# -----------------------------------------------------------------------------
+# Projede Karşılaşılan Zorluklar 
+- Projenin yapım aşamasında öncelikle log verilerini temizlerken timestamp kısmını temizlemek beni biraz zorladı syntax açısından.
+- Verilerin vektöre dönüştürülmesinde ilk denememde yanlış şekilde vektörleştirdiğim için oluşan vectorized_data dataframe'i sadece 0'dan oluşuyordu çok nadiren de olsa 0.0.1 gibi değerler vardı.
+- Bundan kaynaklanan problemden dolayı da sistem entegresinde ve daha öncesinde hem model cevap vermiyordu hem de çok fazla error ile karşılaşıyordum. Daha sonra geri dönüp vektörizasyon işlemini
+- düzeltip ilerleyince doğru vektörleri elde ettim. Beni en çok uğraştıran kısım vektörleme kısmıydı tam olarak nerede hata yaptığımı anlayamadığımdan dolayı.
+- Model kısmında da token, padding gibi işlemlerde kullanacağım değerleri ayarlamak biraz uğraştırdı.
+
+# Sistemin Performansı Ve Doğruluğu Hakkında Değerlendirme
+- Sistemin performans açısından herhangi bir problemi olduğunu düşünmüyorum. Girilen log verilerini doğru bir biçimde
+- alıp vektörize edip daha sonra modeli entegre edip düzgün bir biçimde soru alıp cevap oluşturabiliyor problemsiz şekilde.
+- Sistemin doğruluğu kısmına gelirsem ise sistemin doğruluğu kısmı biraz problemli, çok doğru ve kesin cevaplar veremiyor
+- bunu da modelin eğitilme kısmında çok fazla veri kullanılmaması ve uzun saatler gerektiren train kısmının
+- eksik kalmasına bağlıyorum, teslimden sonra proje üzerine fine tunning kısmı tam olarak tamamlanıp model tam olarak eğitilerek
+- güncellenecektir. Şu an için cevap kısmı için acemice bir model.
