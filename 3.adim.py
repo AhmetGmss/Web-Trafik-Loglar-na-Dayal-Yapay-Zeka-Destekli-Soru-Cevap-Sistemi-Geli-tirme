@@ -1,4 +1,4 @@
-# Gerekli olan kütüphaneleri import ediyoruz.
+# Gerekli olan kütüphaneleri yüklüyoruz ve import ediyoruz.
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
