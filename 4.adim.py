@@ -39,7 +39,7 @@ class CustomDataset(Dataset):
 
   def __getitem__(self,idx):
     item={key:torch.tensor(val[idx]) for key,val in self.encodings.items()}
-    item['labels'] = item['input_ids'].clone()  # Create a copy for labels
+    item['labels'] = item['input_ids'].clone()
     return item
 
   def __len__(self):
