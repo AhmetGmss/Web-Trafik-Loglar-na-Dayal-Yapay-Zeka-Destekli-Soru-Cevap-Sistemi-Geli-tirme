@@ -79,11 +79,10 @@ attention_mask = inputs['attention_mask']
 
 # Modelden yanıt oluşturma
 # Yanıt oluşturma
-# Yanıt oluşturma
 outputs = gpt2_model.generate(
     input_ids,
     attention_mask=attention_mask,
-    max_new_tokens=200,  # Modelin üreteceği yeni token sayısını belirleyin
+    max_new_tokens=200,  # Modelin üreteceği yeni token sayısını belirledik.
     num_beams=4,
     early_stopping=True,
     repetition_penalty=1.2,
@@ -93,6 +92,6 @@ outputs = gpt2_model.generate(
 
 
 
-# Yanıtı al ve temizle
+# Yanıtı alıp ön belleği temizleidk.
 response = tokenizer.decode(outputs[0], skip_special_tokens=True)
 print("Soru:", response)
